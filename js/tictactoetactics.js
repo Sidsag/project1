@@ -231,9 +231,55 @@ $("#board").delegate("td", "click", function() {
       $cellEl.removeClass("fade-out");
     }, 2000);
   }
-});
 
 
+
+//Corner Relations
+boardCenterPlaneA[0] == boardLeftPlaneD[2] == boardTopPlaneE[6];
+boardCenterPlaneA[2] == boardTopPlaneE[8] == boardRightPlaneB[0];
+boardCenterPlaneA[6] == boardLeftPlaneD[8] == boardDownPlaneF[0];
+boardCenterPlaneA[8] == boardDownPlaneF[2] == boardRightPlaneB[6];
+boardRightPlaneB[2] == boardBackPlaneC[0] == boardTopPlaneE[2];
+boardRightPlaneB[8] == boardBackPlaneC[6] == boardDownPlaneF[8];
+boardBackPlaneC[2] == boardLeftPlaneD[0] == boardTopPlaneE[0]
+boardBackPlaneC[8] == boardLeftPlaneD[6] == boardDownPlaneF[6];
+//Side Relations
+boardCenterPlaneA[1] == boardTopPlaneE[7];
+boardCenterPlaneA[3] == boardLeftPlaneD[5];
+boardCenterPlaneA[5] == boardRightPlaneB[3];
+boardCenterPlaneA[7] == boardDownPlaneF[1];
+boardRightPlaneB[1] == boardTopPlaneE[5];
+boardRightPlaneB[5] == boardBackPlaneC[3];
+boardRightPlaneB[7] == boardDownPlaneF[5];
+boardBackPlaneC[1] == boardTopPlaneE[1];
+boardBackPlaneC[5] == boardLeftPlaneD[3]
+boardBackPlaneC[7] == boardDownPlaneF[7];
+boardLeftPlaneD[1] == boardTopPlaneE[3];
+boardLeftPlaneD[7] == boardDownPlaneF[3];
+//Centers - No Relations
+boardCenterPlaneA[4];
+boardRightPlaneB[4];
+boardBackPlaneC[4];
+boardLeftPlaneD[4];
+boardTopPlaneE[4];
+boardDownPlaneF[4];
+
+
+}); //END OF PAGE FUNCTION
+
+
+
+//NOTES
+
+//GRID
+
+
+
+
+
+
+//  If Sum of Cells in single board === 3 X wins ||
+//   If Sum of Cells in single board === -3 0 wins
 
 //boardCenterPlaneA[0] boardCenterPlaneA[1] boardCenterPlaneA[2]
 //boardCenterPlaneA[3] boardCenterPlaneA[4] boardCenterPlaneA[5]
@@ -258,7 +304,6 @@ $("#board").delegate("td", "click", function() {
 //boardDownPlaneF[0] boardDownPlaneF[1] boardDownPlaneF[2]
 //boardDownPlaneF[3] boardDownPlaneF[4] boardDownPlaneF[5]
 //boardDownPlaneF[6] boardDownPlaneF[7] boardDownPlaneF[8]
-
 
 
 
