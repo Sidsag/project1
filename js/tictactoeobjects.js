@@ -1,4 +1,6 @@
 
+
+
 /* MODEL */
 
 /* DATA MODEL */
@@ -162,6 +164,20 @@ function refreshBoard() {
   ];
 }
 
+// var corner = function(){
+// if (boardCenterPlaneA[0] === currentPlayer) {
+// boardLeftPlaneD[2] = currentPlayer; boardTopPlaneE[6] = currentPlayer;
+// };
+// if (boardLeftPlaneD[2] === currentPlayer) {
+// boardCenterPlaneA[0] = currentPlayer; boardTopPlaneE[6] = currentPlayer;
+// };
+// if (boardTopPlaneE[6] === currentPlayer) {
+// boardCenterPlaneA[0] = currentPlayer; boardLeftPlaneD[2] = currentPlayer;
+// };
+// }
+
+
+
 var gameWon = function() {
   if (
 
@@ -250,65 +266,15 @@ var gameWon = function() {
 // us test it, or even just deal with REALLY long render
 // functions, breaking them up in to smaller ones.
 var renderboard = function() {
-  $("#cellA0").text(boardCenterPlaneA[0]);
-  $("#cellA1").text(boardCenterPlaneA[1]);
-  $("#cellA2").text(boardCenterPlaneA[2]);
-  $("#cellA3").text(boardCenterPlaneA[3]);
-  $("#cellA4").text(boardCenterPlaneA[4]);
-  $("#cellA5").text(boardCenterPlaneA[5]);
-  $("#cellA6").text(boardCenterPlaneA[6]);
-  $("#cellA7").text(boardCenterPlaneA[7]);
-  $("#cellA8").text(boardCenterPlaneA[8]);
-
-  $("#cellB0").text(boardRightPlaneB[0]);
-  $("#cellB1").text(boardRightPlaneB[1]);
-  $("#cellB2").text(boardRightPlaneB[2]);
-  $("#cellB3").text(boardRightPlaneB[3]);
-  $("#cellB4").text(boardRightPlaneB[4]);
-  $("#cellB5").text(boardRightPlaneB[5]);
-  $("#cellB6").text(boardRightPlaneB[6]);
-  $("#cellB7").text(boardRightPlaneB[7]);
-  $("#cellB8").text(boardRightPlaneB[8]);
-
-  $("#cellC0").text(boardBackPlaneC[0]);
-  $("#cellC1").text(boardBackPlaneC[1]);
-  $("#cellC2").text(boardBackPlaneC[2]);
-  $("#cellC3").text(boardBackPlaneC[3]);
-  $("#cellC4").text(boardBackPlaneC[4]);
-  $("#cellC5").text(boardBackPlaneC[5]);
-  $("#cellC6").text(boardBackPlaneC[6]);
-  $("#cellC7").text(boardBackPlaneC[7]);
-  $("#cellC8").text(boardBackPlaneC[8]);
-
-  $("#cellD0").text(boardLeftPlaneD[0]);
-  $("#cellD1").text(boardLeftPlaneD[1]);
-  $("#cellD2").text(boardLeftPlaneD[2]);
-  $("#cellD3").text(boardLeftPlaneD[3]);
-  $("#cellD4").text(boardLeftPlaneD[4]);
-  $("#cellD5").text(boardLeftPlaneD[5]);
-  $("#cellD6").text(boardLeftPlaneD[6]);
-  $("#cellD7").text(boardLeftPlaneD[7]);
-  $("#cellD8").text(boardLeftPlaneD[8]);
-
-  $("#cellE0").text(boardTopPlaneE[0]);
-  $("#cellE1").text(boardTopPlaneE[1]);
-  $("#cellE2").text(boardTopPlaneE[2]);
-  $("#cellE3").text(boardTopPlaneE[3]);
-  $("#cellE4").text(boardTopPlaneE[4]);
-  $("#cellE5").text(boardTopPlaneE[5]);
-  $("#cellE6").text(boardTopPlaneE[6]);
-  $("#cellE7").text(boardTopPlaneE[7]);
-  $("#cellE8").text(boardTopPlaneE[8]);
-
-  $("#cellF0").text(boardDownPlaneF[0]);
-  $("#cellF1").text(boardDownPlaneF[1]);
-  $("#cellF2").text(boardDownPlaneF[2]);
-  $("#cellF3").text(boardDownPlaneF[3]);
-  $("#cellF4").text(boardDownPlaneF[4]);
-  $("#cellF5").text(boardDownPlaneF[5]);
-  $("#cellF6").text(boardDownPlaneF[6]);
-  $("#cellF7").text(boardDownPlaneF[7]);
-  $("#cellF8").text(boardDownPlaneF[8]);
+  $("#cell0").text(boardCenterPlaneA[0]);
+  $("#cell1").text(boardCenterPlaneA[1]);
+  $("#cell2").text(boardCenterPlaneA[2]);
+  $("#cell3").text(boardCenterPlaneA[3]);
+  $("#cell4").text(boardCenterPlaneA[4]);
+  $("#cell5").text(boardCenterPlaneA[5]);
+  $("#cell6").text(boardCenterPlaneA[6]);
+  $("#cell7").text(boardCenterPlaneA[7]);
+  $("#cell8").text(boardCenterPlaneA[8]);
 
   // for (var i = 0; i < board.length; i++) {
   //   $("cell" + i).text(board[i]);
@@ -344,11 +310,42 @@ $("#board").delegate("td", "click", function() {
 
 
 //Corner Relations
-
+boardCenterPlaneA[0] == boardLeftPlaneD[2] && boardCenterPlaneA[0] == boardTopPlaneE[6] &&
+boardLeftPlaneD[2] == boardTopPlaneE[6];
+boardCenterPlaneA[2] == boardTopPlaneE[8] && boardCenterPlaneA[2] == boardRightPlaneB[0] &&
+boardTopPlaneE[8] == boardRightPlaneB[0];
+boardCenterPlaneA[6] == boardLeftPlaneD[8] && boardCenterPlaneA[6] == boardDownPlaneF[0] &&
+boardLeftPlaneD[8] == boardDownPlaneF[0];
+boardCenterPlaneA[8] == boardDownPlaneF[2] && boardCenterPlaneA[8] == boardRightPlaneB[6] &&
+boardDownPlaneF[2] == boardRightPlaneB[6];
+boardRightPlaneB[2] == boardBackPlaneC[0] && boardRightPlaneB[2] == boardTopPlaneE[2] &&
+boardBackPlaneC[0] == boardTopPlaneE[2];
+boardRightPlaneB[8] == boardBackPlaneC[6] && boardRightPlaneB[8] == boardDownPlaneF[8] &&
+boardBackPlaneC[6] == boardDownPlaneF[8];
+boardBackPlaneC[2] == boardLeftPlaneD[0] && boardBackPlaneC[2] == boardTopPlaneE[0] &&
+boardLeftPlaneD[0] == boardTopPlaneE[0];
+boardBackPlaneC[8] == boardLeftPlaneD[6] && boardBackPlaneC[8] == boardDownPlaneF[6] &&
+boardLeftPlaneD[6] == boardDownPlaneF[6];
 //Side Relations
-
+boardCenterPlaneA[1] == boardTopPlaneE[7];
+boardCenterPlaneA[3] == boardLeftPlaneD[5];
+boardCenterPlaneA[5] == boardRightPlaneB[3];
+boardCenterPlaneA[7] == boardDownPlaneF[1];
+boardRightPlaneB[1] == boardTopPlaneE[5];
+boardRightPlaneB[5] == boardBackPlaneC[3];
+boardRightPlaneB[7] == boardDownPlaneF[5];
+boardBackPlaneC[1] == boardTopPlaneE[1];
+boardBackPlaneC[5] == boardLeftPlaneD[3]
+boardBackPlaneC[7] == boardDownPlaneF[7];
+boardLeftPlaneD[1] == boardTopPlaneE[3];
+boardLeftPlaneD[7] == boardDownPlaneF[3];
 //Centers - No Relations
-
+boardCenterPlaneA[4];
+boardRightPlaneB[4];
+boardBackPlaneC[4];
+boardLeftPlaneD[4];
+boardTopPlaneE[4];
+boardDownPlaneF[4];
 
 }); //END OF PAGE FUNCTION
 
@@ -364,8 +361,32 @@ $("#board").delegate("td", "click", function() {
 //  If Sum of Cells in single board === 3 X wins ||
 //   If Sum of Cells in single board === -3 0 wins
 
+//boardCenterPlaneA[0] boardCenterPlaneA[1] boardCenterPlaneA[2]
+//boardCenterPlaneA[3] boardCenterPlaneA[4] boardCenterPlaneA[5]
+//boardCenterPlaneA[6] boardCenterPlaneA[7] boardCenterPlaneA[8]
+
+//boardRightPlaneB[0] boardRightPlaneB[1] boardRightPlaneB[2]
+//boardRightPlaneB[3] boardRightPlaneB[4] boardRightPlaneB[5]
+//boardRightPlaneB[6] boardRightPlaneB[7] boardRightPlaneB[8]
+
+//boardBackPlaneC[0] boardBackPlaneC[1] boardBackPlaneC[2]
+//boardBackPlaneC[3] boardBackPlaneC[4] boardBackPlaneC[5]
+//boardBackPlaneC[6] boardBackPlaneC[7] boardBackPlaneC[8]
+
+//boardLeftPlaneD[0] boardLeftPlaneD[1] boardLeftPlaneD[2]
+//boardLeftPlaneD[3] boardLeftPlaneD[4] boardLeftPlaneD[5]
+//boardLeftPlaneD[6] boardLeftPlaneD[7] boardLeftPlaneD[8]
+
+//boardTopPlaneE[0] boardTopPlaneE[1] boardTopPlaneE[2]
+//boardTopPlaneE[3] boardTopPlaneE[4] boardTopPlaneE[5]
+//boardTopPlaneE[6] boardTopPlaneE[7] boardTopPlaneE[8]
+
+//boardDownPlaneF[0] boardDownPlaneF[1] boardDownPlaneF[2]
+//boardDownPlaneF[3] boardDownPlaneF[4] boardDownPlaneF[5]
+//boardDownPlaneF[6] boardDownPlaneF[7] boardDownPlaneF[8]
+
 var render = function() {
+  corner();
   gameWon();
 }
-
 

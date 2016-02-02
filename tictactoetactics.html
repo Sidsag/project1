@@ -2,69 +2,122 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>TTT Model</title>
+  <title>Tac</title>
+    <link rel="stylesheet" href="./css/tictactoetactics.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .align-right {
-      position: absolute;
-      right: 0px;
-      height: 100px;
-      width: 100px;
-      border: 1px solid red;
-      padding: 30px 0;
-      font-size: 20px;
-    }
-    .boardCenterPlane {
-      width: 600px;
-      border: 1px solid black;
-      margin: 0 auto;
-      position: relative;
-    }
-    .boardCenterPlane table {
-      width: 400px;
-      height: 400px;
-    }
-    div {
-      display: inline-block;
-    }
-    button {
-      clear: both;
-    }
-    td {
-      width: 125px;
-      height: 125px;
-      border: 1px solid black;
-      font-size: 40px;
-    }
-    .above { top: 50px; }
-    .below { top: 200px; }
+
   </style>
 </head>
 <body>
   <h1>Tic Tac Toe Tac Tic</h1>
-  <div class="boardCenterPlaneA">
+  <div id="board">
     <table id="boardCenterPlaneA">
       <tbody>
         <tr>
-          <td id="cell0"></td>
-          <td id="cell1"></td>
-          <td id="cell2"></td>
+          <td id="cellA0">a</td>
+          <td id="cellA1">b</td>
+          <td id="cellA2">c</td>
         </tr>
         <tr>
-          <td id="cell3"></td>
-          <td id="cell4"></td>
-          <td id="cell5"></td>
+          <td id="cellA3">d</td>
+          <td id="cellA4">e</td>
+          <td id="cellA5">f</td>
         </tr>
         <tr>
-          <td id="cell6"></td>
-          <td id="cell7"></td>
-          <td id="cell8"></td>
+          <td id="cellA6">g</td>
+          <td id="cellA7">h</td>
+          <td id="cellA8">i</td>
+        </tr>
+      </tbody>
+    <table id="boardRightPlaneB">
+       <tbody>
+        <tr>
+          <td id="cellB0">c</td>
+          <td id="cellB1">j</td>
+          <td id="cellB2">k</td>
+        </tr>
+        <tr>
+          <td id="cellB3">f</td>
+          <td id="cellB4">l</td>
+          <td id="cellB5">m</td>
+        </tr>
+        <tr>
+          <td id="cellB6">i</td>
+          <td id="cellB7">n</td>
+          <td id="cellB8">o</td>
+        </tr>
+      </tbody>
+    <table id="boardBackPlaneC">
+       <tbody>
+        <tr>
+          <td id="cellC0">k</td>
+          <td id="cellC1">p</td>
+          <td id="cellC2">q</td>
+        </tr>
+        <tr>
+          <td id="cellC3">m</td>
+          <td id="cellC4">r</td>
+          <td id="cellC5">s</td>
+        </tr>
+        <tr>
+          <td id="cellC6">o</td>
+          <td id="cellC7">t</td>
+          <td id="cellC8">u</td>
+        </tr>
+      </tbody>
+    <table id="boardLeftPlaneD">
+       <tbody>
+        <tr>
+          <td id="cellD0">q</td>
+          <td id="cellD1">v</td>
+          <td id="cellD2">a</td>
+        </tr>
+        <tr>
+          <td id="cellD3">s</td>
+          <td id="cellD4">w</td>
+          <td id="cellD5">d</td>
+        </tr>
+        <tr>
+          <td id="cellD6">u</td>
+          <td id="cellD7">x</td>
+          <td id="cellD8">g</td>
+        </tr>
+      </tbody>
+    <table id="boardTopPlaneE">
+       <tbody>
+        <tr>
+          <td id="cellE0">q</td>
+          <td id="cellE1">p</td>
+          <td id="cellE2">k</td>
+        </tr>
+        <tr>
+          <td id="cellE3">v</td>
+          <td id="cellE4">z</td>
+          <td id="cellE5">j</td>
+        </tr>
+        <tr>
+          <td id="cellE6">a</td>
+          <td id="cellE7">b</td>
+          <td id="cellE8">c</td>
+        </tr>
+      </tbody>
+    <table id="boardDownPlaneF">
+       <tbody>
+        <tr>
+          <td id="cellF0">g</td>
+          <td id="cellF1">h</td>
+          <td id="cellF2">i</td>
+        </tr>
+        <tr>
+          <td id="cellF3">x</td>
+          <td id="cellF4">y</td>
+          <td id="cellF5">n</td>
+        </tr>
+        <tr>
+          <td id="cellF6">u</td>
+          <td id="cellF7">t</td>
+          <td id="cellF8">o</td>
         </tr>
       </tbody>
     </table>
