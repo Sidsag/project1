@@ -13,8 +13,8 @@ var bS = {a: '', b: '', c: '', d: '', e: '', f: '',
           y: '', z: '',
         }
 
-var cube = [boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
-            boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF]
+//var cube = [boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
+            //boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF]
 
 var startGame = function() {
   won = false;
@@ -60,7 +60,6 @@ var startGame = function() {
 /* BEHAVIOR */
 
 var move = function(cellIndex) {
-  boardCenterPlaneA[cellIndex] = currentPlayer;
   if (gameWon()) {
     won = true;
   } else {
@@ -73,36 +72,6 @@ var move = function(cellIndex) {
   }
 };
 
-// Event Listener
-// function clicking() {
-//   for (var i = 0; i < 9; i += 1) {
-//     $('#cellA'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-//     $('#cellB'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-//     $('#cellC'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-//     $('#cellD'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-//     $('#cellE'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-//     $('#cellF'+i).on("click", function() {
-//       console.log("working")
-//       window[$(this).html()] = "X"
-//     });
-
-//   };
-// };
 
 // clicking()
 
@@ -111,57 +80,26 @@ $('#board').delegate('td', 'click', function() {
   bS[findKeyName] = currentPlayer;
   refreshBoard();
   move();
+  render();
 });
 
 
-  //$("#board").on('click', function(event) {
-   // $("#cellA0").text(currentPlayer);
-  //});
-
- //$("#board").on('click', function(event) {
-    //$("#cellA1").text(currentPlayer);
-  //});
-
 function refreshBoard() {
-  boardCenterPlaneA = [
-  bS.a, bS.b, bS.c,// A, B, C Center Side/Plane
-  bS.d, bS.e, bS.f,// D, E ,F
-  bS.g, bS.h, bS.i // G, H, I
-  ];
-
- boardRightPlaneB = [
-  bS.c, bS.j, bS.k, // C, J, K Right Side/Plane
-  bS.f, bS.l, bS.m, // F, L ,M
-  bS.i, bS.n, bS.o // I, N, O
-  ];
-
-  boardBackPlaneC = [
-  bS.k, bS.p, bS.q, // K, P, Q Back Rear Side/Plane
-  bS.m, bS.r, bS.s, // M, R ,S
-  bS.o, bS.t, bS.u //  O, T, U
-  ];
-
-  boardLeftPlaneD = [
-  bS.q, bS.v, bS.a, // Q, V, A Left Side/Plane
-  bS.s, bS.w, bS.d, // S, W ,D
-  bS.u, bS.x, bS.g // U, X, G
-  ];
-
-  boardTopPlaneE = [
-  bS.q, bS.p, bS.k, // Q, P, K Up Top Side/Plane
-  bS.v, bS.z, bS.j, // V, Z ,J
-  bS.a, bS.b, bS.c // A, B, C
-  ];
-
-  boardDownPlaneF = [
-  bS.g, bS.h, bS.i, // G, H, I Down Bottom Side/Plane
-  bS.x, bS.y, bS.n, // X, Y ,N
-  bS.u, bS.t, bS.o // U, T, O
-  ];
-  console.log(boardCenterPlaneA, boardRightPlaneB,
-              boardBackPlaneC, boardLeftPlaneD,
-              boardTopPlaneE, boardDownPlaneF)
-  renderboard();
+  boardCenterPlaneA = [ bS.a, bS.b, bS.c, bS.d, bS.e, bS.f, bS.g, bS.h, bS.i
+                      ];
+   boardRightPlaneB = [ bS.c, bS.j, bS.k, bS.f, bS.l, bS.m, bS.i, bS.n, bS.o
+                      ];
+    boardBackPlaneC = [ bS.k, bS.p, bS.q, bS.m, bS.r, bS.s, bS.o, bS.t, bS.u
+                      ];
+    boardLeftPlaneD = [ bS.q, bS.v, bS.a, bS.s, bS.w, bS.d, bS.u, bS.x, bS.g
+                      ];
+     boardTopPlaneE = [ bS.q, bS.p, bS.k, bS.v, bS.z, bS.j, bS.a, bS.b, bS.c
+                      ];
+    boardDownPlaneF = [bS.g, bS.h, bS.i, bS.x, bS.y, bS.n, bS.u, bS.t, bS.o
+                      ];
+    console.log(boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
+                boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF)
+    renderboard();
 }
 
 var gameWon = function() {
@@ -323,6 +261,48 @@ $("#restart").click(function(evt) {
   startGame();
   renderboard();
 });
+
+//Slider
+
+
+//$('#board').animate({left : -width}, 500, function(){ $div.hide() });
+//$div.css({left: width}).show().animate({left: 0}, 500);
+
+
+var currentIndex = 0,
+  items = $('.container table');
+  horAmt = 4;
+
+function cycleItems() {
+  var item = $('.container table').eq(currentIndex);
+  items.hide();
+  item.css('display', 'inline-block');
+}
+
+$("#right").click(function() {
+  currentIndex += 1;
+  if (currentIndex > horAmt -1) {
+    currentIndex = 0;
+  }
+  cycleItems();
+});
+
+$("#left").click(function() {
+  currentIndex -= 1;
+  if (currentIndex < 0) {
+    currentIndex = horAmt -1;
+  }
+  cycleItems();
+});
+
+$("#up").click(function() {
+  currentIndex -= 1;
+  if (currentIndex < 0) {
+    currentIndex = horAmt -1;
+  }
+  cycleItems();
+});
+
 
 // $("#board").delegate("td", "click", function() {
 //   var $cellEl    = $(this);
