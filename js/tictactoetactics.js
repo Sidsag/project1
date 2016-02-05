@@ -91,7 +91,7 @@ var move = function(cellIndex) {
   if (gameWon()) {
     won = true;
     return;
-  } else {
+    } else {
     if (currentPlayer === "X") {
       currentPlayer = "O";
     } else {
@@ -100,7 +100,7 @@ var move = function(cellIndex) {
   }
 };
 
-//Click
+//Click Action
 $('#board').delegate('td', 'click', function() {
   var findKeyName = $(this).attr('id').slice(-1);
   if(bS[findKeyName] === '' && !won) {
@@ -115,6 +115,7 @@ $('#board').delegate('td', 'click', function() {
   };
 });
 
+//Game Win Condition 3 in a Row on any given board
 var gameWon = function() {
   if (
     ((boardCenterPlaneA[0] === boardCenterPlaneA[1]) && (boardCenterPlaneA[0] === boardCenterPlaneA[2]) && boardCenterPlaneA[0] !== "") ||
@@ -177,7 +178,7 @@ var gameWon = function() {
   }
 };
 
-
+//Render updates and changes Board
 var render = function() {
   var $turnEl = $("#turn")
   var $winnerEl = $("#winner");
@@ -279,14 +280,7 @@ var renderboard = function() {
   $("#cellF8o").text(boardDownPlaneF[8]);
 }
 
-/* USER INTERACTION */
-
-$("#restartButton").click(function(evt) {
-  // startGame();
-  // renderboard();
-  location.reload(true);
-});
-
+//Board Plane Action/Buttons
 function displayPlane(planeLetter) {
   currentPlane = planeLetter;
 
@@ -336,9 +330,8 @@ $("#yellowButton").click(function() {
   displayPlane("F");
 });
 
-/////audio manipulation
-///////////////////
 
+//Audio FX
 var jump  = $("#jump")[0];
 var error = $("#error")[0];
 var win   = $("#win")[0];
@@ -355,6 +348,7 @@ function playWinSound() {
   win.play();
 }
 
+//Keyboard Mapping/Control Logic
 $("body").on("keydown", function(evt) {
   var planeColor = translateLetterToColor(currentPlane);
   var moveDirection;
@@ -386,7 +380,10 @@ $("body").on("keydown", function(evt) {
       return;
   }
 
+//Color Letter Board Translate
   var goToColor = planes[planeColor][moveDirection];
   var goToLetter = translateColorToLetter(goToColor);
   displayPlane(goToLetter);
 });
+
+//The End

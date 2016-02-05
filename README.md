@@ -2,7 +2,7 @@
 ![tictactoe tactic logo](https://i.imgur.com/y6RqK0Y.png)  
 
 #The Game  
-Imagine Tic Tac Toe where the first player going doesn't completely have the advantage.  Imagine Tic Tac Toe where the game doesn't nearly have to end so quickly.  Now imagine Tic Tac Toe on 6 different planes like the side of a Rubik's Cube.  And there we have **[Tic Tac Toe Tactic!](http://watfood.github.io/project1)**
+Imagine Tic Tac Toe where the first player move doesn't always have the advantage.  Imagine Tic Tac Toe where the fun doesn't nearly have to end so quickly.  Now imagine Tic Tac Toe on 6 different planes like the side of a Rubik's Cube.  This is the concept behind the new  **[Tic Tac Toe Tactic!](http://watfood.github.io/project1)**
 
 ![Rubiks Cube](http://www.thinkgeek.com/images/products/zoom/rubix_cube.jpg)
 
@@ -28,7 +28,7 @@ The **[Tic Tac Toe Tactic](http://watfood.github.io/project1)** design approach 
 * Figuring out how to tie the spaces together where 1 value connect to there spaces and planes. Setting the spaces up as objects vs string variables.
 * Visually interpreting & navigating the planes/sides.
 
-The final design aesthetic was intended to have what the original paper Tic Tac Toe qualities had;
+The final design aesthetic was intended encompass all the great qualities original paper Tic Tac Toe have;
 
 * Simple & Classic design, **anyone can play!** 
 * Recognizable, no language barriers, **can play immediately, no manual required!**  
