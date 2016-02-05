@@ -1,7 +1,4 @@
 
-/* MODEL */
-
-/* DATA MODEL */
 
 var won = false;
 var currentPlayer = "X";
@@ -32,9 +29,9 @@ var startGame = function() {
   ];
 
   boardBackPlaneC = [
-  bS.k, bS.p, bS.q, // K, P, Q Back Rear Side/Plane
-  bS.m, bS.r, bS.s, // M, R ,S
-  bS.o, bS.t, bS.u //  O, T, U
+  bS.u, bS.t, bS.o, // U, T, O Back Rear Side/Plane
+  bS.s, bS.r, bS.m, // S, R ,M
+  bS.q, bS.p, bS.k //  Q, P, K
   ];
 
   boardLeftPlaneD = [
@@ -56,51 +53,33 @@ var startGame = function() {
   ];
 };
 
-
-/* BEHAVIOR */
-
+// Move
 var move = function(cellIndex) {
   if (gameWon()) {
     won = true;
+    return;
   } else {
     if (currentPlayer === "X") {
       currentPlayer = "O";
     } else {
       currentPlayer = "X";
     }
-    // currentPlayer = (currentPlayer === "X" ? "O" : "X");
   }
 };
 
-
-// clicking()
-
+//Click
 $('#board').delegate('td', 'click', function() {
   var findKeyName = $(this).attr('id').slice(-1);
-  bS[findKeyName] = currentPlayer;
-  refreshBoard();
-  move();
-  render();
+  if(bS[findKeyName] === '' && !won) {
+    bS[findKeyName] = currentPlayer;
+    refreshBoard();
+    move();
+    playJumpSound();
+    render();
+  } else { $("#turn").text("try again");
+            playErrorSound();
+            };
 });
-
-
-function refreshBoard() {
-  boardCenterPlaneA = [ bS.a, bS.b, bS.c, bS.d, bS.e, bS.f, bS.g, bS.h, bS.i
-                      ];
-   boardRightPlaneB = [ bS.c, bS.j, bS.k, bS.f, bS.l, bS.m, bS.i, bS.n, bS.o
-                      ];
-    boardBackPlaneC = [ bS.k, bS.p, bS.q, bS.m, bS.r, bS.s, bS.o, bS.t, bS.u
-                      ];
-    boardLeftPlaneD = [ bS.q, bS.v, bS.a, bS.s, bS.w, bS.d, bS.u, bS.x, bS.g
-                      ];
-     boardTopPlaneE = [ bS.q, bS.p, bS.k, bS.v, bS.z, bS.j, bS.a, bS.b, bS.c
-                      ];
-    boardDownPlaneF = [bS.g, bS.h, bS.i, bS.x, bS.y, bS.n, bS.u, bS.t, bS.o
-                      ];
-    console.log(boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
-                boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF)
-    renderboard();
-}
 
 var gameWon = function() {
   if (
@@ -167,28 +146,39 @@ var gameWon = function() {
 };
 
 
-/* RENDER OUR VIEW */
-
 var render = function() {
-  // Render Turn Counter Component
   var $turnEl = $("#turn")
-  $turnEl.text("Turn: " + currentPlayer);
+  $turnEl.text(currentPlayer);
 
-  // Render Winner Component
-  var $winnerEl = $("#winner");
+var $winnerEl = $("#winner");
   renderboard();
   if (!won) {
-    $winnerEl.text("Winner: ?");
+    $winnerEl.text("X vs O");
   } else {
-    $winnerEl.text("Winner: " + currentPlayer);
-    alert("Yo dawg, I can't believe " + currentPlayer + " just won!! DAYYUM!")
+    $winnerEl.text(currentPlayer + " wins");
+    playWinSound();
   }
 };
 
-// As an example, we can "render" a component separately
-// in a function, just calling it above. This can help
-// us test it, or even just deal with REALLY long render
-// functions, breaking them up in to smaller ones.
+
+function refreshBoard() {
+  boardCenterPlaneA = [ bS.a, bS.b, bS.c, bS.d, bS.e, bS.f, bS.g, bS.h, bS.i
+                      ];
+   boardRightPlaneB = [ bS.c, bS.j, bS.k, bS.f, bS.l, bS.m, bS.i, bS.n, bS.o
+                      ];
+    boardBackPlaneC = [ bS.u, bS.t, bS.o, bS.s, bS.r, bS.m, bS.q, bS.p, bS.k
+                      ];
+    boardLeftPlaneD = [ bS.q, bS.v, bS.a, bS.s, bS.w, bS.d, bS.u, bS.x, bS.g
+                      ];
+     boardTopPlaneE = [ bS.q, bS.p, bS.k, bS.v, bS.z, bS.j, bS.a, bS.b, bS.c
+                      ];
+    boardDownPlaneF = [bS.g, bS.h, bS.i, bS.x, bS.y, bS.n, bS.u, bS.t, bS.o
+                      ];
+    console.log(boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
+                boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF)
+    renderboard();
+}
+
 var renderboard = function() {
   $("#cellA0a").text(boardCenterPlaneA[0]);
   $("#cellA1b").text(boardCenterPlaneA[1]);
@@ -210,15 +200,15 @@ var renderboard = function() {
   $("#cellB7n").text(boardRightPlaneB[7]);
   $("#cellB8o").text(boardRightPlaneB[8]);
 
-  $("#cellC0k").text(boardBackPlaneC[0]);
-  $("#cellC1p").text(boardBackPlaneC[1]);
-  $("#cellC2q").text(boardBackPlaneC[2]);
-  $("#cellC3m").text(boardBackPlaneC[3]);
+  $("#cellC0u").text(boardBackPlaneC[0]);
+  $("#cellC1t").text(boardBackPlaneC[1]);
+  $("#cellC2o").text(boardBackPlaneC[2]);
+  $("#cellC3s").text(boardBackPlaneC[3]);
   $("#cellC4r").text(boardBackPlaneC[4]);
-  $("#cellC5s").text(boardBackPlaneC[5]);
-  $("#cellC6o").text(boardBackPlaneC[6]);
-  $("#cellC7t").text(boardBackPlaneC[7]);
-  $("#cellC8u").text(boardBackPlaneC[8]);
+  $("#cellC5m").text(boardBackPlaneC[5]);
+  $("#cellC6q").text(boardBackPlaneC[6]);
+  $("#cellC7p").text(boardBackPlaneC[7]);
+  $("#cellC8k").text(boardBackPlaneC[8]);
 
   $("#cellD0q").text(boardLeftPlaneD[0]);
   $("#cellD1v").text(boardLeftPlaneD[1]);
@@ -249,135 +239,92 @@ var renderboard = function() {
   $("#cellF6u").text(boardDownPlaneF[6]);
   $("#cellF7t").text(boardDownPlaneF[7]);
   $("#cellF8o").text(boardDownPlaneF[8]);
-
-  // for (var i = 0; i < board.length; i++) {
-  //   $("cell" + i).text(board[i]);
-  // }
 }
 
 /* USER INTERACTION */
 
-$("#restart").click(function(evt) {
-  startGame();
-  renderboard();
+$("#restartButton").click(function(evt) {
+  // startGame();
+  // renderboard();
+  location.reload(true);
 });
 
-//Slider
+
+$("#redButton").click(function() {
+  $("#boardTopPlaneE").css("display", "table");
+  $("#boardDownPlaneF").css("display", "none");
+  $("#boardLeftPlaneD").css("display", "none");
+  $("#boardBackPlaneC").css("display", "none");
+  $("#boardRightPlaneB").css("display", "none");
+  $("#boardCenterPlaneA").css("display", "none");
 
 
-//$('#board').animate({left : -width}, 500, function(){ $div.hide() });
-//$div.css({left: width}).show().animate({left: 0}, 500);
+});
+
+$("#greenButton").click(function() {
+  $("#boardTopPlaneE").css("display", "none");
+  $("#boardDownPlaneF").css("display", "none");
+  $("#boardLeftPlaneD").css("display", "none");
+  $("#boardBackPlaneC").css("display", "none");
+  $("#boardRightPlaneB").css("display", "table");
+  $("#boardCenterPlaneA").css("display", "none");
+});
+
+$("#yellowButton").click(function() {
+  $("#boardTopPlaneE").css("display", "none");
+  $("#boardDownPlaneF").css("display", "table");
+  $("#boardLeftPlaneD").css("display", "none");
+  $("#boardBackPlaneC").css("display", "none");
+  $("#boardRightPlaneB").css("display", "none");
+  $("#boardCenterPlaneA").css("display", "none");
+});
+
+$("#orangeButton").click(function() {
+  $("#boardTopPlaneE").css("display", "none");
+  $("#boardDownPlaneF").css("display", "none");
+  $("#boardLeftPlaneD").css("display", "none");
+  $("#boardBackPlaneC").css("display", "none");
+  $("#boardRightPlaneB").css("display", "none");
+  $("#boardCenterPlaneA").css("display", "table");
+});
+
+$("#blueButton").click(function() {
+  $("#boardTopPlaneE").css("display", "none");
+  $("#boardDownPlaneF").css("display", "none");
+  $("#boardLeftPlaneD").css("display", "table");
+  $("#boardBackPlaneC").css("display", "none");
+  $("#boardRightPlaneB").css("display", "none");
+  $("#boardCenterPlaneA").css("display", "none");
+});
+
+$("#purpleButton").click(function() {
+  $("#boardTopPlaneE").css("display", "none");
+  $("#boardDownPlaneF").css("display", "none");
+  $("#boardLeftPlaneD").css("display", "none");
+  $("#boardBackPlaneC").css("display", "table");
+  $("#boardRightPlaneB").css("display", "none");
+  $("#boardCenterPlaneA").css("display", "none");
+});
 
 
-var currentIndex = 0,
-  items = $('.container table');
-  horAmt = 4;
 
-function cycleItems() {
-  var item = $('.container table').eq(currentIndex);
-  items.hide();
-  item.css('display', 'inline-block');
+/////audio manipulation
+///////////////////
+
+var jump = $("#jump")[0];
+function playJumpSound() {
+  jump.play();
 }
 
-$("#right").click(function() {
-  currentIndex += 1;
-  if (currentIndex > horAmt -1) {
-    currentIndex = 0;
-  }
-  cycleItems();
-});
+var error = $("#error")[0];
+function playErrorSound() {
+    error.play();
+}
 
-$("#left").click(function() {
-  currentIndex -= 1;
-  if (currentIndex < 0) {
-    currentIndex = horAmt -1;
-  }
-  cycleItems();
-});
-
-$("#up").click(function() {
-  currentIndex -= 1;
-  if (currentIndex < 0) {
-    currentIndex = horAmt -1;
-  }
-  cycleItems();
-});
-
-
-// $("#board").delegate("td", "click", function() {
-//   var $cellEl    = $(this);
-//   var cellIndex = $cellEl.attr('id').slice(-1);
-
-//   if (!won && $cellEl.text() === "") {
-//     move(cellIndex);
-//     render();
-//   } else if (!won && $cellEl.text() !== "") {
-//     $cellEl.addClass("fade-in");
-//     setTimeout(function() {
-//       $cellEl.addClass("fade-out");
-//     }, 1000);
-//     setTimeout(function() {
-//       $cellEl.removeClass("fade-in");
-//       $cellEl.removeClass("fade-out");
-//     }, 2000);
-//   }
-
-
-
-
-//Corner Relations
-
-//Side Relations
-
-//Centers - No Relations
-
-
-// }); //END OF PAGE FUNCTION
-
-
-
-//NOTES
-
-//GRID
-
-
-
-
-//  If Sum of Cells in single board === 3 X wins ||
-//   If Sum of Cells in single board === -3 0 wins
-
-// ||||||||||||||||||||||||||||||||||||||
-// EZRA'S IDEAS DAWG!!
-// ||||||||||||||||||||||||||||||||||||||
-
-var boards = [
-  [null, null, null,
-   null, null, null,
-   null, null, null],
-
-  [null, null, null,
-   null, null, null,
-   null, null, null],
-
-  [null, null, null,
-   null, null, null,
-   null, null, null],
-
-  [null, null, null,
-   null, null, null,
-   null, null, null],
-
-  [null, null, null,
-   null, null, null,
-   null, null, null],
-
-  [null, null, null,
-   null, null, null,
-   null, null, null]
-]
-
-
-
-
+var win
+= $("#win")[0];
+function playWinSound() {
+    win.play();
+}
 
 

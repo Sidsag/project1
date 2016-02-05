@@ -2,147 +2,165 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>Tac</title>
+  <title>tic tac toe tactic</title>
     <link rel="stylesheet" href="./css/tictactoetactics.css">
 <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
-  <style>
 
-  </style>
 </head>
 <body>
-  <h1>Tic Tac Toe Tac Tic</h1>
+  <h3></h3>
   <div id="board" class="container">
-    <table id="boardCenterPlaneA" class="show">
-      <tbody>
-        <tr>
-          <td class="cellA" id="cellA0a">a</td>
-          <td class="cellA" id="cellA1b">b</td>
-          <td class="cellA" id="cellA2c">c</td>
-        </tr>
-        <tr>
-          <td class="cellA" id="cellA3d">d</td>
-          <td class="cellA" id="cellA4e">e</td>
-          <td class="cellA" id="cellA5f">f</td>
-        </tr>
-        <tr>
-          <td class="cellA" id="cellA6g">g</td>
-          <td class="cellA" id="cellA7h">h</td>
-          <td class="cellA" id="cellA8i">i</td>
-        </tr>
-      </tbody>
-    </table>
-    <table id="boardRightPlaneB" class="hidden">
-       <tbody>
-        <tr>
-          <td class="cellB" id="cellB0c">c</td>
-          <td class="cellB" id="cellB1j">j</td>
-          <td class="cellB" id="cellB2k">k</td>
-        </tr>
-        <tr>
-          <td class="cellB" id="cellB3f">f</td>
-          <td class="cellB" id="cellB4l">l</td>
-          <td class="cellB" id="cellB5m">m</td>
-        </tr>
-        <tr>
-          <td class="cellB" id="cellB6i">i</td>
-          <td class="cellB" id="cellB7n">n</td>
-          <td class="cellB" id="cellB8o">o</td>
-        </tr>
-      </tbody>
-    </table>
-    <table id="boardBackPlaneC" class="hidden">
-       <tbody>
-        <tr>
-          <td class="cellC" id="cellC0k">k</td>
-          <td class="cellC" id="cellC1p">p</td>
-          <td class="cellC" id="cellC2q">q</td>
-        </tr>
-        <tr>
-          <td class="cellC" id="cellC3m">m</td>
-          <td class="cellC" id="cellC4r">r</td>
-          <td class="cellC" id="cellC5s">s</td>
-        </tr>
-        <tr>
-          <td class="cellC" id="cellC6o">o</td>
-          <td class="cellC" id="cellC7t">t</td>
-          <td class="cellC" id="cellC8u">u</td>
-        </tr>
-      </tbody>
-    </table>
-    <table id="boardLeftPlaneD" class="hidden">
-       <tbody>
-        <tr>
-          <td class="cellD" id="cellD0q">q</td>
-          <td class="cellD" id="cellD1v">v</td>
-          <td class="cellD" id="cellD2a">a</td>
-        </tr>
-        <tr>
-          <td class="cellD" id="cellD3s">s</td>
-          <td class="cellD" id="cellD4w">w</td>
-          <td class="cellD" id="cellD5d">d</td>
-        </tr>
-        <tr>
-          <td class="cellD" id="cellD6u">u</td>
-          <td class="cellD" id="cellD7x">x</td>
-          <td class="cellD" id="cellD8g">g</td>
-        </tr>
-      </tbody>
-    </table>
-    <table id="boardTopPlaneE" class="hidden">
-       <tbody>
-        <tr>
-          <td class="cellE" id="cellE0q">q</td>
-          <td class="cellE" id="cellE1p">p</td>
-          <td class="cellE" id="cellE2k">k</td>
-        </tr>
-        <tr>
-          <td class="cellE" id="cellE3v">v</td>
-          <td class="cellE" id="cellE4z">z</td>
-          <td class="cellE" id="cellE5j">j</td>
-        </tr>
-        <tr>
-          <td class="cellE" id="cellE6a">a</td>
-          <td class="cellE" id="cellE7b">b</td>
-          <td class="cellE" id="cellE8c">c</td>
-        </tr>
-      </tbody>
-    </table>
-    <table id="boardDownPlaneF" class="hidden">
-       <tbody>
-        <tr>
-          <td class="cellF" id="cellF0g">g</td>
-          <td class="cellF" id="cellF1h">h</td>
-          <td class="cellF" id="cellF2i">i</td>
-        </tr>
-        <tr>
-          <td class="cellF" id="cellF3x">x</td>
-          <td class="cellF" id="cellF4y">y</td>
-          <td class="cellF" id="cellF5n">n</td>
-        </tr>
-        <tr>
-          <td class="cellF" id="cellF6u">u</td>
-          <td class="cellF" id="cellF7t">t</td>
-          <td class="cellF" id="cellF8o">o</td>
-        </tr>
-      </tbody>
-    </table>
-
-  </div>
-      <div class="align-right above">
-        <span id="turn">Turn: X</span>
-      </div>
-      <div class="align-right below">
-        <span id="winner">Winner: ?</span>
-      </div>
-
-    <div class="center bottom">
-      <button id="restart">RESTART</button>
-      <button id="right">RIGHT</button>
-      <button id="left">LEFT</button>
-      <button id="up">UP</button>
-      <button id="down">DOWN</button>
+    <!-- x vs o -->
+    <div class="message">
+      <span id="winner">X vs O</span>
     </div>
 
+    <!-- board -->
+    <div>
+      <table id="boardCenterPlaneA" class="show">
+        <tbody>
+          <tr>
+            <td class="cellA" id="cellA0a">t</td>
+            <td class="cellA" id="cellA1b">i</td>
+            <td class="cellA" id="cellA2c">c</td>
+          </tr>
+          <tr>
+            <td class="cellA" id="cellA3d">t</td>
+            <td class="cellA" id="cellA4e">a</td>
+            <td class="cellA" id="cellA5f">c</td>
+          </tr>
+          <tr>
+            <td class="cellA" id="cellA6g">t</td>
+            <td class="cellA" id="cellA7h">o</td>
+            <td class="cellA" id="cellA8i">e</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="boardRightPlaneB" class="hidden">
+        <tbody>
+          <tr>
+            <td class="cellB" id="cellB0c">t</td>
+            <td class="cellB" id="cellB1j">t</td>
+            <td class="cellB" id="cellB2k">t</td>
+          </tr>
+          <tr>
+            <td class="cellB" id="cellB3f">i</td>
+            <td class="cellB" id="cellB4l">a</td>
+            <td class="cellB" id="cellB5m">o</td>
+          </tr>
+          <tr>
+            <td class="cellB" id="cellB6i">c</td>
+            <td class="cellB" id="cellB7n">c</td>
+            <td class="cellB" id="cellB8o">e</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="boardBackPlaneC" class="hidden">
+        <tbody>
+          <tr>
+            <td class="cellC" id="cellC0u">t</td>
+            <td class="cellC" id="cellC1t">a</td>
+            <td class="cellC" id="cellC2o">c</td>
+          </tr>
+          <tr>
+            <td class="cellC" id="cellC3s">t</td>
+            <td class="cellC" id="cellC4r">i</td>
+            <td class="cellC" id="cellC5m">c</td>
+          </tr>
+          <tr>
+            <td class="cellC" id="cellC6q">t</td>
+            <td class="cellC" id="cellC7p">o</td>
+            <td class="cellC" id="cellC8k">e</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="boardLeftPlaneD" class="hidden">
+        <tbody>
+          <tr>
+            <td class="cellD" id="cellD0q">t</td>
+            <td class="cellD" id="cellD1v">a</td>
+            <td class="cellD" id="cellD2a">c</td>
+          </tr>
+          <tr>
+            <td class="cellD" id="cellD3s">t</td>
+            <td class="cellD" id="cellD4w">i</td>
+            <td class="cellD" id="cellD5d">c</td>
+          </tr>
+          <tr>
+            <td class="cellD" id="cellD6u">t</td>
+            <td class="cellD" id="cellD7x">o</td>
+            <td class="cellD" id="cellD8g">e</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="boardTopPlaneE" class="hidden">
+        <tbody>
+          <tr>
+            <td class="cellE" id="cellE0q">t</td>
+            <td class="cellE" id="cellE1p">i</td>
+            <td class="cellE" id="cellE2k">c</td>
+          </tr>
+          <tr>
+            <td class="cellE" id="cellE3v">t</td>
+            <td class="cellE" id="cellE4z">a</td>
+            <td class="cellE" id="cellE5j">c</td>
+          </tr>
+          <tr>
+            <td class="cellE" id="cellE6a">t</td>
+            <td class="cellE" id="cellE7b">i</td>
+            <td class="cellE" id="cellE8c">c</td>
+          </tr>
+        </tbody>
+      </table>
+      <table id="boardDownPlaneF" class="hidden">
+        <tbody>
+          <tr>
+            <td class="cellF" id="cellF0g">t</td>
+            <td class="cellF" id="cellF1h">i</td>
+            <td class="cellF" id="cellF2i">c</td>
+          </tr>
+          <tr>
+            <td class="cellF" id="cellF3x">t</td>
+            <td class="cellF" id="cellF4y">a</td>
+            <td class="cellF" id="cellF5n">c</td>
+          </tr>
+          <tr>
+            <td class="cellF" id="cellF6u">t</td>
+            <td class="cellF" id="cellF7t">i</td>
+            <td class="cellF" id="cellF8o">c</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="info">
+         <li><span id="turn">t a c t i c</span></li>
+        <li><a href="#" id="restartButton">restart</a></li>
+      </div>
+    </div>
+
+    <!-- buttons -->
+    <div class="control">
+      <tbody id="control">
+        <tr>
+          <li><a href="#" id="redButton"></a></li>
+        </tr>
+        <tr>
+          <a href="#" id="blueButton"></a>
+          <a href="#" id="orangeButton"></a>
+          <a href="#" id="greenButton"></a>
+        </tr>
+        <tr>
+            <li><a href="#" id="yellowButton"></a></li>
+        </tr>
+        <tr>
+            <li><a href="#" id="purpleButton"></a></li>
+        </tr>
+      </tbody>
+    </div>
+  </div>
+
+  <audio id="jump" src="sounds/jump.mov"></audio>
+  <audio id="error" src="sounds/error.mov"></audio>
+  <audio id="win" src="sounds/win.mov"></audio>
   <script src="js/tictactoetactics.js"></script>
 </body>
 </html>
