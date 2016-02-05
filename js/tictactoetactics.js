@@ -2,13 +2,46 @@
 
 var won = false;
 var currentPlayer = "X";
+var currentPlane  = "A";
 
-var bS = {a: '', b: '', c: '', d: '', e: '', f: '',
-          g: '', h: '', i: '', j: '', k: '', l: '',
-          m: '', n: '', o: '', p: '', q: '', r: '',
-          s: '', t: '', u: '', v: '', w: '', x: '',
-          y: '', z: '',
-        }
+var bS = {
+  a: '', b: '', c: '', d: '', e: '', f: '',
+  g: '', h: '', i: '', j: '', k: '', l: '',
+  m: '', n: '', o: '', p: '', q: '', r: '',
+  s: '', t: '', u: '', v: '', w: '', x: '',
+  y: '', z: '',
+};
+
+var planes = {
+  red:    {N: "purple", S: "orange", W: "blue",   E: "green"},
+  orange: {N: "red",    S: "yellow", W: "blue",   E: "green"},
+  yellow: {N: "orange", S: "purple", W: "blue",   E: "green"},
+  purple: {N: "yellow", S: "red",    W: "green",  E: "blue"},
+  green:  {N: "red",    S: "yellow", W: "orange", E: "purple"},
+  blue:   {N: "red",    S: "yellow", W: "purple", E: "orange"}
+};
+
+function translateLetterToColor(letter) {
+  switch (letter) {
+    case "A": return "orange";
+    case "B": return "green";
+    case "C": return "purple";
+    case "D": return "blue";
+    case "E": return "red";
+    case "F": return "yellow";
+  }
+}
+
+function translateColorToLetter(color) {
+  switch (color) {
+    case "orange": return "A";
+    case "green":  return "B";
+    case "purple": return "C";
+    case "blue":   return "D";
+    case "red":    return "E";
+    case "yellow": return "F";
+  }
+}
 
 //var cube = [boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
             //boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF]
@@ -254,59 +287,53 @@ $("#restartButton").click(function(evt) {
   location.reload(true);
 });
 
+function displayPlane(planeLetter) {
+  currentPlane = planeLetter;
 
-$("#redButton").click(function() {
-  $("#boardTopPlaneE").css("display", "table");
+  $("#boardTopPlaneE").css("display", "none");
   $("#boardDownPlaneF").css("display", "none");
   $("#boardLeftPlaneD").css("display", "none");
   $("#boardBackPlaneC").css("display", "none");
   $("#boardRightPlaneB").css("display", "none");
   $("#boardCenterPlaneA").css("display", "none");
+
+  if (planeLetter === "A") {
+    $("#boardCenterPlaneA").css("display", "table");
+  } else if (planeLetter === "B") {
+    $("#boardRightPlaneB").css("display", "table");
+  } else if (planeLetter === "C") {
+    $("#boardBackPlaneC").css("display", "table");
+  } else if (planeLetter === "D") {
+    $("#boardLeftPlaneD").css("display", "table");
+  } else if (planeLetter === "E") {
+    $("#boardTopPlaneE").css("display", "table");
+  } else if (planeLetter === "F") {
+    $("#boardDownPlaneF").css("display", "table");
+  }
+}
+
+$("#orangeButton").click(function() {
+  displayPlane("A");
 });
 
 $("#greenButton").click(function() {
-  $("#boardTopPlaneE").css("display", "none");
-  $("#boardDownPlaneF").css("display", "none");
-  $("#boardLeftPlaneD").css("display", "none");
-  $("#boardBackPlaneC").css("display", "none");
-  $("#boardRightPlaneB").css("display", "table");
-  $("#boardCenterPlaneA").css("display", "none");
-});
-
-$("#yellowButton").click(function() {
-  $("#boardTopPlaneE").css("display", "none");
-  $("#boardDownPlaneF").css("display", "table");
-  $("#boardLeftPlaneD").css("display", "none");
-  $("#boardBackPlaneC").css("display", "none");
-  $("#boardRightPlaneB").css("display", "none");
-  $("#boardCenterPlaneA").css("display", "none");
-});
-
-$("#orangeButton").click(function() {
-  $("#boardTopPlaneE").css("display", "none");
-  $("#boardDownPlaneF").css("display", "none");
-  $("#boardLeftPlaneD").css("display", "none");
-  $("#boardBackPlaneC").css("display", "none");
-  $("#boardRightPlaneB").css("display", "none");
-  $("#boardCenterPlaneA").css("display", "table");
-});
-
-$("#blueButton").click(function() {
-  $("#boardTopPlaneE").css("display", "none");
-  $("#boardDownPlaneF").css("display", "none");
-  $("#boardLeftPlaneD").css("display", "table");
-  $("#boardBackPlaneC").css("display", "none");
-  $("#boardRightPlaneB").css("display", "none");
-  $("#boardCenterPlaneA").css("display", "none");
+  displayPlane("B");
 });
 
 $("#purpleButton").click(function() {
-  $("#boardTopPlaneE").css("display", "none");
-  $("#boardDownPlaneF").css("display", "none");
-  $("#boardLeftPlaneD").css("display", "none");
-  $("#boardBackPlaneC").css("display", "table");
-  $("#boardRightPlaneB").css("display", "none");
-  $("#boardCenterPlaneA").css("display", "none");
+  displayPlane("C");
+});
+
+$("#blueButton").click(function() {
+  displayPlane("D");
+});
+
+$("#redButton").click(function() {
+  displayPlane("E");
+});
+
+$("#yellowButton").click(function() {
+  displayPlane("F");
 });
 
 /////audio manipulation
@@ -327,3 +354,39 @@ function playErrorSound() {
 function playWinSound() {
   win.play();
 }
+
+$("body").on("keydown", function(evt) {
+  var planeColor = translateLetterToColor(currentPlane);
+  var moveDirection;
+
+  switch (evt.keyCode) {
+    case 87: // W
+      console.log("FlipNorth");
+      moveDirection = "N";
+      break;
+    case 83: // S
+      console.log("FlipSouth");
+      moveDirection = "S";
+      break;
+    case 65: // A
+      console.log("FlipWest");
+      moveDirection = "W";
+      break;
+    case 68: // D
+      console.log("FlipEast");
+      moveDirection = "E";
+      break;
+    case 81: // Q
+      console.log("RotateCounter");
+      return;
+    case 69: // E
+      console.log("RotateClock");
+      return;
+    default:
+      return;
+  }
+
+  var goToColor = planes[planeColor][moveDirection];
+  var goToLetter = translateColorToLetter(goToColor);
+  displayPlane(goToLetter);
+});
