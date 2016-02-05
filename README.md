@@ -57,7 +57,7 @@ Installation?  What installation you caveman?! Simply use your favorite device &
 
 Keep up with it all through my **[Trello Board](https://trello.com/b/TFko6QIf/tic-tac-toe-tac-tic)**  
 
-![Hi Tech](http://www.michaelspillane.com/games/atari2600_a-c/3dtictactoe-pic.jpg)
+![Hi Tech](https://i.imgur.com/gsBDgVZ.jpg)
 
 
 ###Designed by Duane Than & General Assembly members of the The Ocho!
