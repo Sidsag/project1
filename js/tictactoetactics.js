@@ -17,39 +17,39 @@ var startGame = function() {
   won = false;
   currentPlayer = "X";
   boardCenterPlaneA = [
-  bS.a, bS.b, bS.c,// A, B, C Center Side/Plane
-  bS.d, bS.e, bS.f,// D, E ,F
-  bS.g, bS.h, bS.i // G, H, I
+    bS.a, bS.b, bS.c, // A, B, C Center Side/Plane
+    bS.d, bS.e, bS.f, // D, E ,F
+    bS.g, bS.h, bS.i  // G, H, I
   ];
 
- boardRightPlaneB = [
-  bS.c, bS.j, bS.k, // C, J, K Right Side/Plane
-  bS.f, bS.l, bS.m, // F, L ,M
-  bS.i, bS.n, bS.o // I, N, O
+  boardRightPlaneB = [
+    bS.c, bS.j, bS.k, // C, J, K Right Side/Plane
+    bS.f, bS.l, bS.m, // F, L ,M
+    bS.i, bS.n, bS.o  // I, N, O
   ];
 
   boardBackPlaneC = [
-  bS.u, bS.t, bS.o, // U, T, O Back Rear Side/Plane
-  bS.s, bS.r, bS.m, // S, R ,M
-  bS.q, bS.p, bS.k //  Q, P, K
+    bS.u, bS.t, bS.o, // U, T, O Back Rear Side/Plane
+    bS.s, bS.r, bS.m, // S, R ,M
+    bS.q, bS.p, bS.k  //  Q, P, K
   ];
 
   boardLeftPlaneD = [
-  bS.q, bS.v, bS.a, // Q, V, A Left Side/Plane
-  bS.s, bS.w, bS.d, // S, W ,D
-  bS.u, bS.x, bS.g // U, X, G
+    bS.q, bS.v, bS.a, // Q, V, A Left Side/Plane
+    bS.s, bS.w, bS.d, // S, W ,D
+    bS.u, bS.x, bS.g  // U, X, G
   ];
 
   boardTopPlaneE = [
-  bS.q, bS.p, bS.k, // Q, P, K Up Top Side/Plane
-  bS.v, bS.z, bS.j, // V, Z ,J
-  bS.a, bS.b, bS.c // A, B, C
+    bS.q, bS.p, bS.k, // Q, P, K Up Top Side/Plane
+    bS.v, bS.z, bS.j, // V, Z ,J
+    bS.a, bS.b, bS.c  // A, B, C
   ];
 
   boardDownPlaneF = [
-  bS.g, bS.h, bS.i, // G, H, I Down Bottom Side/Plane
-  bS.x, bS.y, bS.n, // X, Y ,N
-  bS.u, bS.t, bS.o // U, T, O
+    bS.g, bS.h, bS.i, // G, H, I Down Bottom Side/Plane
+    bS.x, bS.y, bS.n, // X, Y ,N
+    bS.u, bS.t, bS.o  // U, T, O
   ];
 };
 
@@ -76,14 +76,14 @@ $('#board').delegate('td', 'click', function() {
     move();
     playJumpSound();
     render();
-  } else { $("#turn").text("try again");
-            playErrorSound();
-            };
+  } else {
+    $("#turn").text("try again");
+    playErrorSound();
+  };
 });
 
 var gameWon = function() {
   if (
-
     ((boardCenterPlaneA[0] === boardCenterPlaneA[1]) && (boardCenterPlaneA[0] === boardCenterPlaneA[2]) && boardCenterPlaneA[0] !== "") ||
     ((boardCenterPlaneA[3] === boardCenterPlaneA[4]) && (boardCenterPlaneA[3] === boardCenterPlaneA[5]) && boardCenterPlaneA[3] !== "") ||
     ((boardCenterPlaneA[6] === boardCenterPlaneA[7]) && (boardCenterPlaneA[6] === boardCenterPlaneA[8]) && boardCenterPlaneA[6] !== "") ||
@@ -137,7 +137,6 @@ var gameWon = function() {
     ((boardDownPlaneF[2] === boardDownPlaneF[5]) && (boardDownPlaneF[2] === boardDownPlaneF[8]) && boardDownPlaneF[2] !== "") ||
     ((boardDownPlaneF[0] === boardDownPlaneF[4]) && (boardDownPlaneF[0] === boardDownPlaneF[8]) && boardDownPlaneF[0] !== "") ||
     ((boardDownPlaneF[2] === boardDownPlaneF[4]) && (boardDownPlaneF[2] === boardDownPlaneF[6]) && boardDownPlaneF[2] !== "")
-
   ) {
     return true;
   } else {
@@ -148,9 +147,9 @@ var gameWon = function() {
 
 var render = function() {
   var $turnEl = $("#turn")
-  $turnEl.text(currentPlayer);
+  var $winnerEl = $("#winner");
 
-var $winnerEl = $("#winner");
+  $turnEl.text(currentPlayer);
   renderboard();
   if (!won) {
     $winnerEl.text("X vs O");
@@ -162,21 +161,27 @@ var $winnerEl = $("#winner");
 
 
 function refreshBoard() {
-  boardCenterPlaneA = [ bS.a, bS.b, bS.c, bS.d, bS.e, bS.f, bS.g, bS.h, bS.i
-                      ];
-   boardRightPlaneB = [ bS.c, bS.j, bS.k, bS.f, bS.l, bS.m, bS.i, bS.n, bS.o
-                      ];
-    boardBackPlaneC = [ bS.u, bS.t, bS.o, bS.s, bS.r, bS.m, bS.q, bS.p, bS.k
-                      ];
-    boardLeftPlaneD = [ bS.q, bS.v, bS.a, bS.s, bS.w, bS.d, bS.u, bS.x, bS.g
-                      ];
-     boardTopPlaneE = [ bS.q, bS.p, bS.k, bS.v, bS.z, bS.j, bS.a, bS.b, bS.c
-                      ];
-    boardDownPlaneF = [bS.g, bS.h, bS.i, bS.x, bS.y, bS.n, bS.u, bS.t, bS.o
-                      ];
-    console.log(boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
-                boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF)
-    renderboard();
+  boardCenterPlaneA = [
+    bS.a, bS.b, bS.c, bS.d, bS.e, bS.f, bS.g, bS.h, bS.i
+  ];
+  boardRightPlaneB = [
+    bS.c, bS.j, bS.k, bS.f, bS.l, bS.m, bS.i, bS.n, bS.o
+  ];
+  boardBackPlaneC = [
+    bS.u, bS.t, bS.o, bS.s, bS.r, bS.m, bS.q, bS.p, bS.k
+  ];
+  boardLeftPlaneD = [
+    bS.q, bS.v, bS.a, bS.s, bS.w, bS.d, bS.u, bS.x, bS.g
+  ];
+  boardTopPlaneE = [
+    bS.q, bS.p, bS.k, bS.v, bS.z, bS.j, bS.a, bS.b, bS.c
+  ];
+  boardDownPlaneF = [
+    bS.g, bS.h, bS.i, bS.x, bS.y, bS.n, bS.u, bS.t, bS.o
+  ];
+  console.log(boardCenterPlaneA, boardRightPlaneB, boardBackPlaneC,
+              boardLeftPlaneD, boardTopPlaneE, boardDownPlaneF)
+  renderboard();
 }
 
 var renderboard = function() {
@@ -257,8 +262,6 @@ $("#redButton").click(function() {
   $("#boardBackPlaneC").css("display", "none");
   $("#boardRightPlaneB").css("display", "none");
   $("#boardCenterPlaneA").css("display", "none");
-
-
 });
 
 $("#greenButton").click(function() {
@@ -306,25 +309,21 @@ $("#purpleButton").click(function() {
   $("#boardCenterPlaneA").css("display", "none");
 });
 
-
-
 /////audio manipulation
 ///////////////////
 
-var jump = $("#jump")[0];
+var jump  = $("#jump")[0];
+var error = $("#error")[0];
+var win   = $("#win")[0];
+
 function playJumpSound() {
   jump.play();
 }
 
-var error = $("#error")[0];
 function playErrorSound() {
-    error.play();
+  error.play();
 }
 
-var win
-= $("#win")[0];
 function playWinSound() {
-    win.play();
+  win.play();
 }
-
-
